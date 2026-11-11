@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>A Special Surprise for Ela</title>
-  <!-- Google Fonts for Cursive / Romantic Look -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Surprise - Ela</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #f7f3ef;
-      --card-bg: #fffbf7;
-      --accent-red: #8b0000;
-      --text-main: #4a3b4c;
-      --text-sub: #8c738f;
+      --bg-pink-light: #fce4ec;
+      --bg-pink-medium: #f8bbd0;
+      --accent-pink: #e91e63;
+      --accent-dark: #c2185b;
+      --text-main: #4a2c3d;
+      --text-sub: #885873;
     }
 
     * {
@@ -22,538 +22,324 @@
     }
 
     body {
-      background-color: var(--bg-color);
-      /* Subtle dotted grid texture matching the reference */
-      background-image: 
-        radial-gradient(rgba(180, 150, 150, 0.25) 1px, transparent 1px);
-      background-size: 24px 24px;
-      color: var(--text-main);
+      background-color: var(--bg-pink-light);
+      background-image: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
       font-family: 'Poppins', sans-serif;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow-x: hidden;
+      position: relative;
     }
 
-    .screen {
-      display: none;
+    /* Decorative Floral Elements in Corners */
+    .flower-top-left {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+      opacity: 0.8;
+    }
+
+    .flower-bottom-right {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 32px;
+      opacity: 0.8;
+    }
+
+    /* Main Split Container */
+    .surprise-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 20px 40px rgba(233, 30, 99, 0.15);
+      display: flex;
+      flex-direction: row;
+      max-width: 900px;
+      width: 90%;
+      height: 520px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Left Aesthetic Photo & Silhouette Section */
+    .left-section {
+      flex: 1;
+      background: linear-gradient(180deg, rgba(252, 228, 236, 0.6) 0%, rgba(244, 143, 177, 0.4) 100%);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 30px;
+      overflow: hidden;
+      border-right: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    /* Floating Heart Balloon simulation */
+    .heart-balloon {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      font-size: 35px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* Aesthetic Overlapping Circular Photos */
+    .photo-cluster {
+      position: absolute;
+      top: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
-      min-height: 100vh;
+    }
+
+    .aesthetic-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #ffffff;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      position: absolute;
+      transition: 0.3s;
+    }
+
+    .aesthetic-img:hover {
+      transform: scale(1.05);
+      z-index: 10;
+    }
+
+    .img-1 {
+      left: 70px;
+      transform: rotate(-8deg);
+      z-index: 1;
+    }
+
+    .img-2 {
+      right: 70px;
+      top: 30px;
+      transform: rotate(8deg);
+      z-index: 2;
+    }
+
+    /* City Skyline Silhouette Graphics at Bottom */
+    .city-silhouette {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 110px;
+      background: linear-gradient(to top, #ad1457, #d81b60);
+      opacity: 0.85;
+      clip-path: polygon(
+        0% 100%, 0% 60%, 5% 60%, 5% 45%, 8% 45%, 8% 70%, 12% 70%, 12% 30%, 
+        16% 30%, 16% 50%, 22% 50%, 22% 20%, 27% 20%, 27% 40%, 33% 40%, 
+        33% 15%, 38% 15%, 38% 55%, 45% 55%, 45% 35%, 52% 35%, 52% 65%, 
+        60% 65%, 60% 40%, 68% 40%, 68% 25%, 75% 25%, 75% 50%, 83% 50%, 
+        83% 20%, 90% 20%, 90% 45%, 95% 45%, 95% 70%, 100% 70%, 100% 100%
+      );
+      z-index: 3;
+    }
+
+    .couple-text {
+      position: relative;
+      z-index: 4;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      margin-bottom: 5px;
+      letter-spacing: 1px;
+    }
+
+    /* Right Login / Password Section */
+    .right-section {
+      flex: 1;
+      padding: 40px;
+      display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 20px;
-      animation: fadeIn 0.8s ease-in-out forwards;
-    }
-
-    .screen.active {
-      display: flex;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Locket Card Design matching image */
-    .lock-card {
-      background: var(--card-bg);
-      padding: 40px 30px;
-      border-radius: 20px;
-      border: 1.5px solid #eadcd2;
-      box-shadow: 0 20px 40px rgba(139, 0, 0, 0.06);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 480px;
-      width: 100%;
-      position: relative;
       text-align: center;
     }
 
-    /* Small scattered mini hearts background inside card */
-    .lock-card::before {
-      content: '♥   ♥      ♥    ♥      ♥   ♥';
-      position: absolute;
-      top: 15px;
-      left: 0;
-      width: 100%;
-      font-size: 10px;
-      color: rgba(139, 0, 0, 0.15);
-      letter-spacing: 15px;
-      pointer-events: none;
-    }
-
-    .lock-card::after {
-      content: '♥      ♥   ♥      ♥   ♥      ♥';
-      position: absolute;
-      bottom: 15px;
-      left: 0;
-      width: 100%;
-      font-size: 10px;
-      color: rgba(139, 0, 0, 0.15);
-      letter-spacing: 15px;
-      pointer-events: none;
-    }
-
-    /* Heading Styling */
-    .anniversary-title {
+    .right-section h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 38px;
-      color: #722f37;
-      margin-top: 10px;
+      font-size: 52px;
+      color: var(--accent-dark);
       margin-bottom: 5px;
     }
 
-    .anniversary-sub {
-      font-family: 'Great Vibes', cursive;
-      font-size: 44px;
-      color: #722f37;
-      margin-bottom: 15px;
-      line-height: 1;
-    }
-
-    /* Locket Container for 2 Heart Photos */
-    .locket-container {
-      position: relative;
-      width: 320px;
-      height: 200px;
-      margin: 10px 0 20px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Locket Ring Hook on top */
-    .locket-hook {
-      position: absolute;
-      top: 5px;
-      left: 51%;
-      transform: translateX(-50%);
-      width: 18px;
-      height: 22px;
-      border: 3px solid #b0b0b0;
-      border-radius: 50% 50% 0 0;
-      background: transparent;
-      z-index: 5;
-    }
-
-    .heart-frame {
-      position: absolute;
-      width: 145px;
-      height: 145px;
-      background: #e0e0e0;
-      /* CSS Heart Mask Shape */
-      clip-path: path('M72.5 130 C72.5 130 130 95 130 55 C130 30 110 12 85 12 C72 12 72.5 25 72.5 25 C72.5 25 73 12 60 12 C35 12 15 30 15 55 C15 95 72.5 130 72.5 130 Z');
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.3), 0 5px 15px rgba(0,0,0,0.15);
-      border: 4px solid #d4af37; /* Gold/Silver metallic border effect */
-    }
-
-    .heart-left {
-      left: 15px;
-      top: 25px;
-      transform: rotate(-8deg);
-      border-color: #cfd8dc;
-    }
-
-    .heart-right {
-      right: 15px;
-      top: 25px;
-      transform: rotate(8deg);
-      border-color: #cfd8dc;
-    }
-
-    .heart-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Date footer inside card */
-    .date-tag {
+    .right-section p {
       font-size: 13px;
-      letter-spacing: 1px;
-      color: #665;
-      margin-bottom: 25px;
-      border-bottom: 1px dashed #dcd0c0;
-      padding-bottom: 5px;
-      display: inline-block;
+      color: var(--text-sub);
+      margin-bottom: 30px;
     }
 
-    /* Password Input Area */
-    .pass-box-container {
+    .input-group {
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
+      max-width: 300px;
+      margin-bottom: 15px;
+      position: relative;
     }
 
-    .pass-input {
-      width: 80%;
-      padding: 12px 20px;
-      border-radius: 30px;
-      border: 1.5px solid #d4af37;
-      background: #ffffff;
+    .input-field {
+      width: 100%;
+      padding: 12px 15px 12px 40px;
+      border-radius: 25px;
+      border: 1px solid #f48fb1;
+      background: #fff5f8;
       color: var(--text-main);
-      font-size: 16px;
-      text-align: center;
+      font-size: 14px;
       outline: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
       transition: 0.3s;
     }
 
-    .pass-input:focus {
-      border-color: #722f37;
-      box-shadow: 0 0 10px rgba(114, 47, 55, 0.2);
+    .input-field:focus {
+      border-color: var(--accent-pink);
+      box-shadow: 0 0 10px rgba(233, 30, 99, 0.2);
     }
 
-    .unlock-btn {
-      background: linear-gradient(135deg, #722f37, #993d48);
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 13px;
+      font-size: 15px;
+    }
+
+    .login-btn {
+      width: 100%;
+      max-width: 300px;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-dark));
       border: none;
       color: white;
-      padding: 10px 30px;
+      padding: 12px;
       font-size: 15px;
       font-weight: 600;
-      border-radius: 30px;
+      border-radius: 25px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(114, 47, 55, 0.3);
+      box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
       transition: 0.3s;
+      margin-top: 10px;
     }
 
-    .unlock-btn:hover {
-      transform: scale(1.05);
+    .login-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4);
     }
 
     .error-msg {
-      color: #c93b3b;
+      color: #d32f2f;
       font-size: 12px;
+      margin-top: 10px;
       display: none;
     }
 
-    /* Animation Screen */
-    #canvas-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    canvas {
-      width: 100%;
-      height: 100%;
-    }
-
-    .nav-btn {
-      position: absolute;
-      bottom: 30px;
-      z-index: 10;
-      background: linear-gradient(135deg, #722f37, #993d48);
-      border: none;
-      color: white;
-      padding: 12px 25px;
-      font-size: 14px;
-      font-weight: bold;
-      border-radius: 25px;
+    .hint-box {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-top: 20px;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(114, 47, 55, 0.4);
-      transition: 0.3s;
     }
 
-    .nav-btn:hover {
-      transform: scale(1.05);
-    }
-
-    /* Gallery Screen */
-    .gallery-container {
-      max-width: 900px;
-      width: 100%;
-      height: 100vh;
-      overflow-y: auto;
-      padding: 40px 20px 100px;
-      text-align: center;
-    }
-
-    .gallery-title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 40px;
-      color: #722f37;
-      margin-bottom: 5px;
-    }
-
-    .gallery-sub {
-      color: var(--text-sub);
-      margin-bottom: 30px;
-      font-size: 13px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      border: 1px solid #eadcd2;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(114, 47, 55, 0.15);
-    }
-
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .card p {
-      padding: 15px;
-      font-size: 13px;
-      color: var(--text-sub);
-    }
-
-    /* Secret Letter Screen */
-    .letter-card {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      border: 2px solid #eadcd2;
-      box-shadow: 0 10px 30px rgba(139, 0, 0, 0.1);
-      max-width: 500px;
-      width: 90%;
-      text-align: center;
-      line-height: 1.8;
-    }
-
-    .letter-card h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 36px;
-      color: #722f37;
-      margin-bottom: 15px;
-    }
-
-    .letter-card p {
-      color: var(--text-main);
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    /* Responsive Mobile Adjustments */
-    @media (max-width: 480px) {
-      .lock-card {
-        padding: 30px 15px;
-        width: 95%;
+    /* Responsive Design for Mobiles */
+    @media (max-width: 768px) {
+      .surprise-card {
+        flex-direction: column;
+        height: auto;
+        max-width: 380px;
       }
-      .locket-container {
-        width: 280px;
-        height: 170px;
+      .left-section {
+        height: 220px;
+        padding: 20px;
       }
-      .heart-frame {
-        width: 125px;
-        height: 125px;
+      .aesthetic-img {
+        width: 90px;
+        height: 90px;
       }
-      .anniversary-title {
-        font-size: 32px;
+      .img-1 { left: 40px; top: 30px; }
+      .img-2 { right: 40px; top: 30px; }
+      .right-section {
+        padding: 30px 20px;
       }
-      .anniversary-sub {
-        font-size: 36px;
+      .right-section h1 {
+        font-size: 42px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Screen 1: Password Lock (Locket Anniversary Theme) -->
-  <div class="screen active" id="screen-lock">
-    <div class="lock-card">
+  <div class="flower-top-left">🌸</div>
+  <div class="flower-bottom-right">🌺</div>
+
+  <div class="surprise-card">
+    
+    <!-- Left Side: Aesthetic Photos & Skyline Theme -->
+    <div class="left-section">
+      <div class="heart-balloon">🎈</div>
       
-      <!-- Top Text matching image -->
-      <div style="font-style: italic; font-size: 14px; color: #722f37; letter-spacing: 0.5px;">• The day of</div>
-      <div class="anniversary-sub">Anniversary</div>
-
-      <!-- Open Locket with 2 Heart Photos -->
-      <div class="locket-container">
-        <div class="locket-hook"></div>
-        <!-- Left Heart Photo -->
-        <div class="heart-frame heart-left">
-          <img src="img1.jpeg" alt="Photo 1">
-        </div>
-        <!-- Right Heart Photo -->
-        <div class="heart-frame heart-right">
-          <img src="img2.jpeg" alt="Photo 2">
-        </div>
+      <!-- Overlapping Aesthetic Circular Photos -->
+      <div class="photo-cluster">
+        <img src="img1.jpeg" alt="Ela 1" class="aesthetic-img img-1">
+        <img src="img2.jpeg" alt="Ela 2" class="aesthetic-img img-2">
       </div>
 
-      <!-- Date Tag -->
-      <div class="date-tag">24/08/24</div>
+      <!-- City Skyline & Silhouette Bottom Graphic -->
+      <div class="city-silhouette"></div>
+      <div class="couple-text">Happy Birthday Ela ✨</div>
+    </div>
 
-      <!-- Password Input Box -->
-      <div class="pass-box-container">
-        <input type="password" id="passInput" class="pass-input" placeholder="Enter secret code..." autocomplete="off">
-        <button class="unlock-btn" onclick="checkPass()">Unlock ✨</button>
-        <p id="errorMsg" class="error-msg">Incorrect code, try again!</p>
+    <!-- Right Side: Welcome & Secret Code Login -->
+    <div class="right-section">
+      <h1>Welcome</h1>
+      <p>Please enter your birthday secret code below</p>
+
+      <div class="input-group">
+        <span class="input-icon">🔐</span>
+        <input type="password" id="passInput" class="input-field" placeholder="Enter secret password..." autocomplete="off">
       </div>
 
-    </div>
-  </div>
-
-  <!-- Screen 2: Heart Animation -->
-  <div class="screen" id="screen-anim">
-    <div id="canvas-container">
-      <canvas id="heartCanvas"></canvas>
-    </div>
-    <button class="nav-btn" onclick="showScreen('screen-gallery')">Continue to Memories ✨</button>
-  </div>
-
-  <!-- Screen 3: Photo Gallery -->
-  <div class="screen" id="screen-gallery">
-    <div class="gallery-container">
-      <h2 class="gallery-title">Special Moments</h2>
-      <p class="gallery-sub">A collection of beautiful memories with Ela</p>
+      <button class="login-btn" onclick="checkPass()">OPEN SURPRISE 💖</button>
       
-      <div class="grid">
-        <div class="card">
-          <img src="https://picsum.photos/400/300?random=1" alt="Memory 1">
-          <p>A memorable day filled with smiles and laughter.</p>
-        </div>
-        <div class="card">
-          <img src="https://picsum.photos/400/300?random=2" alt="Memory 2">
-          <p>Unforgettable moments captured together.</p>
-        </div>
-        <div class="card">
-          <img src="https://picsum.photos/400/300?random=3" alt="Memory 3">
-          <p>Always making ordinary days feel extraordinary.</p>
-        </div>
-      </div>
-
-      <button class="nav-btn" onclick="showScreen('screen-letter')">Read Secret Note 💌</button>
+      <p id="errorMsg" class="error-msg">Incorrect password, try again!</p>
+      
+      <div class="hint-box" onclick="alert('Hint: Default code is 1234')">Need a hint? 💡</div>
     </div>
-  </div>
 
-  <!-- Screen 4: Secret Note -->
-  <div class="screen" id="screen-letter">
-    <div class="letter-card">
-      <h2>Dear Ela ❤️</h2>
-      <p>
-        You bring so much warmth, happiness, and joy into every moment. This simple site is just a small gesture to bring a smile to your face today.
-      </p>
-      <p>
-        Thank you for being such an extraordinary person!
-      </p>
-      <button class="nav-btn" onclick="showScreen('screen-anim')" style="position:relative; bottom:auto; margin-top:10px;">Replay Heart Animation 💖</button>
-    </div>
   </div>
 
   <script>
-    // Password Check Function
     function checkPass() {
       const input = document.getElementById('passInput').value;
       const errorMsg = document.getElementById('errorMsg');
       
-      // Passcode (Default: 1234 - ekhane change korte paren)
+      // পাসওয়ার্ড এখানে পরিবর্তন করতে পারবেন (যেমন: '1234' বা আপনার পছন্দমতো)
       if (input === '1234') {
         errorMsg.style.display = 'none';
-        showScreen('screen-anim');
-        startHeartAnimation();
+        window.location.href = 'heart.html'; // পাসওয়ার্ড সঠিক হলে অ্যানিমেশন পেজে নিয়ে যাবে
       } else {
         errorMsg.style.display = 'block';
       }
     }
 
-    // Allow Enter key to submit password
+    // Enter Key Support
     document.getElementById('passInput').addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         checkPass();
       }
     });
-
-    function showScreen(screenId) {
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      document.getElementById(screenId).classList.add('active');
-    }
-
-    // Canvas Heart Animation Logic ("ELA" glowing heart)
-    let animStarted = false;
-    function startHeartAnimation() {
-      if (animStarted) return;
-      animStarted = true;
-
-      const canvas = document.getElementById('heartCanvas');
-      const ctx = canvas.getContext('2d');
-
-      function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      resize();
-      window.addEventListener('resize', resize);
-
-      function getHeartPoint(t, scale = 15) {
-        const x = 16 * Math.pow(Math.sin(t), 3);
-        const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
-        return { x: x * scale, y: y * scale };
-      }
-
-      let points = [];
-      const isMobile = window.innerWidth <= 768;
-      const heartScale = isMobile ? 11 : 18;
-
-      for (let t = 0; t <= Math.PI * 2; t += 0.12) {
-        let p = getHeartPoint(t, heartScale);
-        points.push({
-          x: p.x,
-          y: p.y - 20
-        });
-      }
-
-      let currentIndex = 0;
-
-      function draw() {
-        ctx.fillStyle = 'rgba(247, 243, 239, 0.25)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        const fontScale = isMobile ? 'bold 13px Arial' : 'bold 16px Arial';
-        ctx.font = fontScale;
-        ctx.fillStyle = '#8b0000';
-        ctx.shadowColor = '#d4af37';
-        ctx.shadowBlur = 10;
-
-        if (currentIndex < points.length) {
-          currentIndex += 0.3;
-        }
-
-        const cx = canvas.width / 2;
-        const cy = canvas.height / 2;
-
-        for (let i = 0; i < Math.floor(currentIndex); i++) {
-          let pt = points[i];
-          ctx.save();
-          ctx.translate(cx + pt.x, cy + pt.y);
-          ctx.fillText("ELA", 0, 0);
-          ctx.restore();
-        }
-
-        requestAnimationFrame(draw);
-      }
-
-      draw();
-    }
   </script>
 </body>
 </html>
