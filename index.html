@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Happy Birthday Surprise - Ela</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-pink-light: #fce4ec;
-      --bg-pink-medium: #f8bbd0;
-      --accent-pink: #e91e63;
-      --accent-dark: #c2185b;
-      --text-main: #4a2c3d;
-      --text-sub: #885873;
+      --bg-pink-1: #ffdde1;
+      --bg-pink-2: #ee9ca7;
+      --accent-pink: #ff2a6d;
+      --accent-soft: #ff758f;
+      --text-main: #4a152b;
+      --text-sub: #8a4b66;
     }
 
     * {
@@ -22,8 +22,7 @@
     }
 
     body {
-      background-color: var(--bg-pink-light);
-      background-image: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
+      background: linear-gradient(135deg, var(--bg-pink-1) 0%, var(--bg-pink-2) 100%);
       font-family: 'Poppins', sans-serif;
       min-height: 100vh;
       display: flex;
@@ -31,142 +30,203 @@
       align-items: center;
       overflow-x: hidden;
       position: relative;
+      padding: 15px;
     }
 
-    /* Decorative Floral Elements in Corners */
-    .flower-top-left {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 24px;
-      opacity: 0.8;
+    /* Floating Background Hearts */
+    .bg-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
     }
 
-    .flower-bottom-right {
+    .bg-hearts span {
       position: absolute;
-      bottom: 10px;
-      right: 10px;
-      font-size: 32px;
-      opacity: 0.8;
+      bottom: -50px;
+      font-size: 20px;
+      opacity: 0.4;
+      animation: floatUp 8s linear infinite;
+    }
+
+    .bg-hearts span:nth-child(1) { left: 10%; animation-duration: 7s; font-size: 18px; }
+    .bg-hearts span:nth-child(2) { left: 25%; animation-duration: 10s; animation-delay: 2s; font-size: 26px; }
+    .bg-hearts span:nth-child(3) { left: 50%; animation-duration: 8s; animation-delay: 1s; font-size: 20px; }
+    .bg-hearts span:nth-child(4) { left: 75%; animation-duration: 11s; animation-delay: 3s; font-size: 24px; }
+    .bg-hearts span:nth-child(5) { left: 90%; animation-duration: 6s; animation-delay: 4s; font-size: 16px; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
     }
 
     /* Main Split Container */
     .surprise-card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(10px);
-      border-radius: 30px;
-      border: 2px solid #ffffff;
-      box-shadow: 0 20px 40px rgba(233, 30, 99, 0.15);
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 32px;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 25px 50px rgba(173, 20, 87, 0.18);
       display: flex;
       flex-direction: row;
-      max-width: 900px;
-      width: 90%;
-      height: 520px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* Left Aesthetic Photo & Silhouette Section */
-    .left-section {
-      flex: 1;
-      background: linear-gradient(180deg, rgba(252, 228, 236, 0.6) 0%, rgba(244, 143, 177, 0.4) 100%);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 30px;
-      overflow: hidden;
-      border-right: 1px solid rgba(255, 255, 255, 0.6);
-    }
-
-    /* Floating Heart Balloon simulation */
-    .heart-balloon {
-      position: absolute;
-      top: 30px;
-      left: 30px;
-      font-size: 35px;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    /* Aesthetic Overlapping Circular Photos */
-    .photo-cluster {
-      position: absolute;
-      top: 70px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      max-width: 920px;
       width: 100%;
-    }
-
-    .aesthetic-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #ffffff;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      position: absolute;
-      transition: 0.3s;
-    }
-
-    .aesthetic-img:hover {
-      transform: scale(1.05);
-      z-index: 10;
-    }
-
-    .img-1 {
-      left: 70px;
-      transform: rotate(-8deg);
+      min-height: 550px;
+      overflow: hidden;
+      position: relative;
       z-index: 1;
     }
 
-    .img-2 {
-      right: 70px;
-      top: 30px;
-      transform: rotate(8deg);
+    /* Left Section: Side-by-Side Romantic Photos */
+    .left-section {
+      flex: 1.1;
+      background: linear-gradient(160deg, rgba(255, 240, 245, 0.85) 0%, rgba(255, 182, 193, 0.45) 100%);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 35px 25px;
+      border-right: 1.5px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .top-badge {
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--accent-pink);
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(255, 42, 109, 0.12);
+      margin-bottom: 25px;
+    }
+
+    /* Romantic Side-by-Side Polaroid Cluster */
+    .photos-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .polaroid-card {
+      width: 145px;
+      background: #ffffff;
+      padding: 8px 8px 26px 8px;
+      border-radius: 16px;
+      box-shadow: 0 12px 28px rgba(173, 20, 87, 0.18);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+
+    .polaroid-left {
+      transform: rotate(-6deg) translateY(-5px);
+      z-index: 1;
+    }
+
+    .polaroid-right {
+      transform: rotate(6deg) translateY(8px);
       z-index: 2;
     }
 
-    /* City Skyline Silhouette Graphics at Bottom */
+    .polaroid-card:hover {
+      transform: scale(1.08) rotate(0deg) translateY(0);
+      z-index: 10;
+      box-shadow: 0 18px 35px rgba(255, 42, 109, 0.28);
+    }
+
+    .polaroid-card img {
+      width: 100%;
+      height: 165px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .polaroid-caption {
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 17px;
+      color: var(--text-main);
+    }
+
+    /* Center Connecting Heart */
+    .center-heart {
+      position: absolute;
+      z-index: 5;
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #ff2a6d, #ff758f);
+      border-radius: 50%;
+      border: 3px solid #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      box-shadow: 0 6px 15px rgba(255, 42, 109, 0.4);
+      animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.15); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.12); }
+    }
+
+    .romantic-quote {
+      text-align: center;
+      z-index: 3;
+      max-width: 300px;
+    }
+
+    .romantic-quote h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 36px;
+      color: var(--accent-pink);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .romantic-quote p {
+      font-size: 12px;
+      color: var(--text-sub);
+      font-style: italic;
+    }
+
+    /* City Skyline Silhouette at Bottom */
     .city-silhouette {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 110px;
-      background: linear-gradient(to top, #ad1457, #d81b60);
-      opacity: 0.85;
+      height: 75px;
+      background: linear-gradient(to top, rgba(216, 27, 96, 0.25), transparent);
       clip-path: polygon(
-        0% 100%, 0% 60%, 5% 60%, 5% 45%, 8% 45%, 8% 70%, 12% 70%, 12% 30%, 
-        16% 30%, 16% 50%, 22% 50%, 22% 20%, 27% 20%, 27% 40%, 33% 40%, 
-        33% 15%, 38% 15%, 38% 55%, 45% 55%, 45% 35%, 52% 35%, 52% 65%, 
-        60% 65%, 60% 40%, 68% 40%, 68% 25%, 75% 25%, 75% 50%, 83% 50%, 
-        83% 20%, 90% 20%, 90% 45%, 95% 45%, 95% 70%, 100% 70%, 100% 100%
+        0% 100%, 0% 60%, 8% 60%, 8% 40%, 15% 40%, 15% 70%, 22% 70%, 22% 25%, 
+        30% 25%, 30% 50%, 38% 50%, 38% 15%, 45% 15%, 45% 55%, 55% 55%, 
+        55% 30%, 65% 30%, 65% 65%, 75% 65%, 75% 20%, 85% 20%, 85% 50%, 
+        93% 50%, 93% 70%, 100% 70%, 100% 100%
       );
-      z-index: 3;
+      pointer-events: none;
     }
 
-    .couple-text {
-      position: relative;
-      z-index: 4;
-      color: #fff;
-      font-size: 13px;
-      font-weight: 600;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      margin-bottom: 5px;
-      letter-spacing: 1px;
-    }
-
-    /* Right Login / Password Section */
+    /* Right Section: Romantic Number Pad */
     .right-section {
-      flex: 1;
-      padding: 40px;
+      flex: 0.9;
+      padding: 35px 25px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -176,168 +236,324 @@
 
     .right-section h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 52px;
-      color: var(--accent-dark);
-      margin-bottom: 5px;
-    }
-
-    .right-section p {
-      font-size: 13px;
-      color: var(--text-sub);
-      margin-bottom: 30px;
-    }
-
-    .input-group {
-      width: 100%;
-      max-width: 300px;
-      margin-bottom: 15px;
-      position: relative;
-    }
-
-    .input-field {
-      width: 100%;
-      padding: 12px 15px 12px 40px;
-      border-radius: 25px;
-      border: 1px solid #f48fb1;
-      background: #fff5f8;
+      font-size: 48px;
       color: var(--text-main);
-      font-size: 14px;
-      outline: none;
-      transition: 0.3s;
+      line-height: 1;
+      margin-bottom: 6px;
     }
 
-    .input-field:focus {
-      border-color: var(--accent-pink);
-      box-shadow: 0 0 10px rgba(233, 30, 99, 0.2);
+    .right-section .sub-prompt {
+      font-size: 12.5px;
+      color: var(--text-sub);
+      margin-bottom: 18px;
     }
 
-    .input-icon {
-      position: absolute;
-      left: 14px;
-      top: 13px;
-      font-size: 15px;
+    /* Glowing Heart Passcode Dots */
+    .pass-dots {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      background: rgba(255, 240, 245, 0.9);
+      padding: 10px 22px;
+      border-radius: 30px;
+      border: 1.5px solid #ffb3c6;
+      box-shadow: inset 0 2px 6px rgba(255, 42, 109, 0.08);
     }
 
-    .login-btn {
+    .dot {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-soft);
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      color: transparent;
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .dot.filled {
+      background: linear-gradient(135deg, #ff2a6d, #ff758f);
+      border-color: #ff2a6d;
+      color: #ffffff;
+      transform: scale(1.15);
+      box-shadow: 0 4px 10px rgba(255, 42, 109, 0.35);
+    }
+
+    /* Romantic Circular / Pill Keypad */
+    .keypad-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
       width: 100%;
-      max-width: 300px;
-      background: linear-gradient(135deg, var(--accent-pink), var(--accent-dark));
-      border: none;
-      color: white;
-      padding: 12px;
-      font-size: 15px;
-      font-weight: 600;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
-      transition: 0.3s;
-      margin-top: 10px;
+      max-width: 230px;
+      margin-bottom: 12px;
     }
 
-    .login-btn:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4);
+    .key-btn {
+      height: 52px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1.5px solid #ffd1dc;
+      border-radius: 18px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(255, 117, 143, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+    }
+
+    .key-btn:hover {
+      background: #fff0f3;
+      border-color: var(--accent-pink);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(255, 42, 109, 0.2);
+    }
+
+    .key-btn:active {
+      transform: scale(0.94);
+    }
+
+    .key-btn.action-heart {
+      background: linear-gradient(135deg, #fff0f3, #ffe0e9);
+      color: var(--accent-pink);
+      font-size: 18px;
+    }
+
+    .key-btn.action-back {
+      background: linear-gradient(135deg, #ff2a6d, #ff758f);
+      color: #ffffff;
+      border: none;
+      font-size: 16px;
     }
 
     .error-msg {
-      color: #d32f2f;
+      color: #d90429;
       font-size: 12px;
-      margin-top: 10px;
-      display: none;
+      font-weight: 500;
+      margin-top: 4px;
+      min-height: 18px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .error-msg.show {
+      opacity: 1;
     }
 
     .hint-box {
       font-size: 12px;
       color: var(--text-sub);
-      margin-top: 20px;
+      margin-top: 6px;
       cursor: pointer;
+      padding: 4px 12px;
+      border-radius: 15px;
+      transition: 0.2s;
     }
 
-    /* Responsive Design for Mobiles */
+    .hint-box:hover {
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--accent-pink);
+    }
+
+    /* Shake Animation on Wrong Password */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+
+    .shake {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    /* Responsive Mobile Layout */
     @media (max-width: 768px) {
       .surprise-card {
         flex-direction: column;
-        height: auto;
         max-width: 380px;
+        min-height: auto;
       }
       .left-section {
-        height: 220px;
-        padding: 20px;
+        padding: 25px 15px 20px;
+        border-right: none;
+        border-bottom: 1.5px solid rgba(255, 255, 255, 0.7);
       }
-      .aesthetic-img {
-        width: 90px;
-        height: 90px;
+      .top-badge {
+        margin-bottom: 15px;
       }
-      .img-1 { left: 40px; top: 30px; }
-      .img-2 { right: 40px; top: 30px; }
+      .photos-wrapper {
+        margin-bottom: 18px;
+      }
+      .polaroid-card {
+        width: 118px;
+        padding: 6px 6px 22px 6px;
+      }
+      .polaroid-card img {
+        height: 130px;
+      }
+      .center-heart {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+      }
+      .romantic-quote h2 {
+        font-size: 30px;
+      }
       .right-section {
-        padding: 30px 20px;
+        padding: 22px 15px;
       }
       .right-section h1 {
-        font-size: 42px;
+        font-size: 40px;
+      }
+      .key-btn {
+        height: 46px;
+        font-size: 16px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="flower-top-left">🌸</div>
-  <div class="flower-bottom-right">🌺</div>
+  <!-- Floating Background Hearts -->
+  <div class="bg-hearts">
+    <span>💖</span>
+    <span>🌸</span>
+    <span>💕</span>
+    <span>✨</span>
+    <span>💗</span>
+  </div>
 
-  <div class="surprise-card">
+  <div class="surprise-card" id="mainCard">
     
-    <!-- Left Side: Aesthetic Photos & Skyline Theme -->
+    <!-- Left Section: Side-by-Side Romantic Polaroid Photos -->
     <div class="left-section">
-      <div class="heart-balloon">🎈</div>
+      <div class="top-badge">✨ Special Birthday Edition ✨</div>
       
-      <!-- Overlapping Aesthetic Circular Photos -->
-      <div class="photo-cluster">
-        <img src="img1.jpeg" alt="Ela 1" class="aesthetic-img img-1">
-        <img src="img2.jpeg" alt="Ela 2" class="aesthetic-img img-2">
+      <div class="photos-wrapper">
+        <!-- 1st Photo -->
+        <div class="polaroid-card polaroid-left">
+          <img src="img1.jpeg" alt="Memory 1">
+          <div class="polaroid-caption">You</div>
+        </div>
+
+        <!-- Connecting Heart Badge -->
+        <div class="center-heart">💖</div>
+
+        <!-- 2nd Photo -->
+        <div class="polaroid-card polaroid-right">
+          <img src="img2.jpeg" alt="Memory 2">
+          <div class="polaroid-caption">&amp; Me</div>
+        </div>
       </div>
 
-      <!-- City Skyline & Silhouette Bottom Graphic -->
+      <div class="romantic-quote">
+        <h2>Happy Birthday Ela</h2>
+        <p>"Every moment with you feels like magic"</p>
+      </div>
+
       <div class="city-silhouette"></div>
-      <div class="couple-text">Happy Birthday Ela ✨</div>
     </div>
 
-    <!-- Right Side: Welcome & Secret Code Login -->
+    <!-- Right Section: Romantic Number Pad -->
     <div class="right-section">
-      <h1>Welcome</h1>
-      <p>Please enter your birthday secret code below</p>
+      <h1>Secret Portal</h1>
+      <p class="sub-prompt">Enter our special 4-digit birthday code</p>
 
-      <div class="input-group">
-        <span class="input-icon">🔐</span>
-        <input type="password" id="passInput" class="input-field" placeholder="Enter secret password..." autocomplete="off">
+      <!-- Heart Passcode Indicators -->
+      <div class="pass-dots" id="passDots">
+        <div class="dot" id="dot-0">♥</div>
+        <div class="dot" id="dot-1">♥</div>
+        <div class="dot" id="dot-2">♥</div>
+        <div class="dot" id="dot-3">♥</div>
       </div>
 
-      <button class="login-btn" onclick="checkPass()">OPEN SURPRISE 💖</button>
-      
-      <p id="errorMsg" class="error-msg">Incorrect password, try again!</p>
-      
-      <div class="hint-box" onclick="alert('Hint: Default code is 1234')">Need a hint? 💡</div>
+      <!-- Keypad Grid -->
+      <div class="keypad-grid">
+        <button class="key-btn" onclick="pressKey('1')">1</button>
+        <button class="key-btn" onclick="pressKey('2')">2</button>
+        <button class="key-btn" onclick="pressKey('3')">3</button>
+        <button class="key-btn" onclick="pressKey('4')">4</button>
+        <button class="key-btn" onclick="pressKey('5')">5</button>
+        <button class="key-btn" onclick="pressKey('6')">6</button>
+        <button class="key-btn" onclick="pressKey('7')">7</button>
+        <button class="key-btn" onclick="pressKey('8')">8</button>
+        <button class="key-btn" onclick="pressKey('9')">9</button>
+        <button class="key-btn action-heart" onclick="pressKey('heart')">💖</button>
+        <button class="key-btn" onclick="pressKey('0')">0</button>
+        <button class="key-btn action-back" onclick="pressKey('back')">⌫</button>
+      </div>
+
+      <div id="errorMsg" class="error-msg">Wrong code! Try again my love 💕</div>
+      <div class="hint-box" onclick="alert('Hint: Our secret code is 1234 💖')">💡 Need a hint?</div>
     </div>
 
   </div>
 
   <script>
-    function checkPass() {
-      const input = document.getElementById('passInput').value;
+    let enteredPass = "";
+    const correctPass = "1234"; // আপনার পছন্দের ৪ সংখ্যার পাসওয়ার্ড এখানে সেট করুন
+
+    function pressKey(val) {
       const errorMsg = document.getElementById('errorMsg');
-      
-      // পাসওয়ার্ড এখানে পরিবর্তন করতে পারবেন (যেমন: '1234' বা আপনার পছন্দমতো)
-      if (input === '1234') {
-        errorMsg.style.display = 'none';
-        window.location.href = 'heart.html'; // পাসওয়ার্ড সঠিক হলে অ্যানিমেশন পেজে নিয়ে যাবে
+      const passDots = document.getElementById('passDots');
+      errorMsg.classList.remove('show');
+
+      if (val === 'back') {
+        enteredPass = enteredPass.slice(0, -1);
+      } else if (val === 'heart') {
+        // Love pulse effect on dots
+        passDots.style.transform = 'scale(1.06)';
+        setTimeout(() => passDots.style.transform = 'scale(1)', 200);
       } else {
-        errorMsg.style.display = 'block';
+        if (enteredPass.length < 4) {
+          enteredPass += val;
+        }
+      }
+
+      updateDots();
+
+      if (enteredPass.length === 4) {
+        if (enteredPass === correctPass) {
+          setTimeout(() => {
+            window.location.href = 'heart.html'; // সঠিক পাসওয়ার্ড দিলে পরের পেজে চলে যাবে
+          }, 350);
+        } else {
+          setTimeout(() => {
+            errorMsg.classList.add('show');
+            passDots.classList.add('shake');
+            setTimeout(() => passDots.classList.remove('shake'), 400);
+            enteredPass = "";
+            updateDots();
+          }, 250);
+        }
       }
     }
 
-    // Enter Key Support
-    document.getElementById('passInput').addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') {
-        checkPass();
+    function updateDots() {
+      for (let i = 0; i < 4; i++) {
+        const dot = document.getElementById(`dot-${i}`);
+        if (i < enteredPass.length) {
+          dot.classList.add('filled');
+        } else {
+          dot.classList.remove('filled');
+        }
+      }
+    }
+
+    // Physical Keyboard Support (Laptop/PC users can also type numbers)
+    document.addEventListener('keydown', function(e) {
+      if (e.key >= '0' && e.key <= '9') {
+        pressKey(e.key);
+      } else if (e.key === 'Backspace') {
+        pressKey('back');
       }
     });
   </script>
