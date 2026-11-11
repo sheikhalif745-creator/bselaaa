@@ -108,98 +108,82 @@
     }
 
     /* Romantic Heart Photo Frames */
+    .photos-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 35px;
+    }
 
-.photos-wrapper {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 30px;
-}
+    .heart-frame {
+      width: 150px;
+      height: 140px;
+      position: relative;
+      background: transparent;
+      padding: 0;
+      filter: drop-shadow(0 8px 10px rgba(255, 42, 109, 0.25));
+      transition: transform 0.4s ease;
+    }
 
-.heart-frame {
-  width: 150px;
-  height: 150px;
-  position: relative;
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-  box-shadow: none;
-  filter: drop-shadow(0 8px 10px rgba(255, 42, 109, 0.25));
-  transition: transform 0.4s ease;
-}
+    .heart-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      clip-path: url(#heartClip);
+    }
 
-.heart-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    /* Heart Border */
+    .heart-border {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+    }
 
-  clip-path: url(#heartClip);
-}
+    .heart-border path {
+      fill: none;
+      stroke: #fff;
+      stroke-width: 3.5;
+      stroke-linejoin: round;
+      paint-order: stroke;
+      filter: drop-shadow(0 0 3px #ff75a0);
+    }
 
-/* Heart Border */
-.heart-border {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  pointer-events: none;
-}
+    .polaroid-left {
+      transform: rotate(-8deg) translateY(-5px);
+      z-index: 1;
+    }
 
-.heart-border path {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 3.5;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 0 3px #ff75a0);
-}
+    .polaroid-right {
+      transform: rotate(8deg) translateY(8px);
+      z-index: 2;
+    }
 
-/* Inner Pink Border */
-.heart-border path {
-  paint-order: stroke;
-}
+    .heart-frame:hover {
+      transform: rotate(0deg) scale(1.1) translateY(-5px);
+      z-index: 10;
+    }
 
-.heart-frame::after {
-  content: " ";
-  position: absolute;
-  inset: 3px;
-  pointer-events: none;
-  clip-path: url(#heartClip);
-  border-radius: 50%;
-  box-shadow: inset 0 0 12px rgba(255, 42, 109, 0.25);
-}
+    .polaroid-caption {
+      position: absolute;
+      bottom: -24px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 19px;
+      color: #b52c5b;
+    }
 
-.polaroid-left {
-  transform: rotate(-8deg) translateY(-5px);
-  z-index: 1;
-}
-
-.polaroid-right {
-  transform: rotate(8deg) translateY(8px);
-  z-index: 2;
-}
-
-.heart-frame:hover {
-  transform: rotate(0deg) scale(1.1) translateY(-5px);
-  z-index: 10;
-}
-
-.polaroid-caption {
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-family: 'Great Vibes', cursive;
-  font-size: 17px;
-  color: #b52c5b;
-}
-
+    /* Fixed: Higher z-index (20) & pointer-events: none so it never goes under photos */
     .center-heart {
       position: absolute;
-      z-index: 5;
+      z-index: 20;
+      pointer-events: none;
       width: 42px;
       height: 42px;
       background: linear-gradient(135deg, #ff2a6d, #ff758f);
@@ -325,81 +309,66 @@
       margin-bottom: 10px;
     }
 
-    /* Romantic Heart-Inspired Keypad Buttons */
-/* Aesthetic Romantic Heart Keypad */
-.key-btn {
-  height: 75px;
-  width: 75px;
-  justify-self: center;
-  align-self: center;
+    /* Aesthetic Romantic Heart Keypad */
+    .key-btn {
+      height: 75px;
+      width: 75px;
+      justify-self: center;
+      align-self: center;
+      background: linear-gradient(145deg, #fffafd 0%, #ffdce8 55%, #ffb6cd 100%);
+      border: none;
+      clip-path: path("M 37.5 70 C 30 62, 3 44, 3 24 C 3 5, 27 0, 37.5 17 C 48 0, 72 5, 72 24 C 72 44, 45 62, 37.5 70 Z");
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      filter: drop-shadow(0 5px 5px rgba(255, 42, 109, 0.22));
+    }
 
-  background: linear-gradient(
-    145deg,
-    #fffafd 0%,
-    #ffdce8 55%,
-    #ffb6cd 100%
-  );
+    .key-btn:hover {
+      transform: scale(1.12) translateY(-3px);
+      filter: drop-shadow(0 8px 9px rgba(255, 42, 109, 0.35));
+    }
 
-  border: none;
-  border-radius: 0;
-  clip-path: path("M 37.5 70 C 30 62, 3 44, 3 24 C 3 5, 27 0, 37.5 17 C 48 0, 72 5, 72 24 C 72 44, 45 62, 37.5 70 Z");
+    .key-btn:active {
+      transform: scale(0.92);
+    }
 
-  font-family: 'Poppins', sans-serif;
-  cursor: pointer;
+    .key-num {
+      font-size: 16px;
+      font-weight: 600;
+      color: #9e3158;
+      line-height: 1.2;
+    }
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    .key-sub {
+      font-size: 9px;
+      color: #e7477c;
+      font-weight: 500;
+    }
 
-  position: relative;
-  transition: transform 0.3s ease, filter 0.3s ease;
+    .key-btn.action-heart {
+      background: linear-gradient(145deg, #ffb3ca, #ff2a6d);
+    }
 
-  filter: drop-shadow(0 5px 5px rgba(255, 42, 109, 0.22));
-}
+    .key-btn.action-heart .key-num,
+    .key-btn.action-heart .key-sub {
+      color: white;
+    }
 
-.key-btn:hover {
-  transform: scale(1.12) translateY(-3px);
-  filter: drop-shadow(0 8px 9px rgba(255, 42, 109, 0.35));
-}
+    .key-btn.action-back {
+      background: linear-gradient(145deg, #ff2a6d, #ff85a5);
+      border: none;
+    }
 
-.key-btn:active {
-  transform: scale(0.92);
-}
-
-.key-num {
-  font-size: 16px;
-  font-weight: 600;
-  color: #9e3158;
-  line-height: 1.2;
-}
-
-.key-sub {
-  font-size: 9px;
-  color: #e7477c;
-  font-weight: 500;
-}
-
-/* Special Heart Button */
-.key-btn.action-heart {
-  background: linear-gradient(145deg, #ffb3ca, #ff2a6d);
-}
-
-.key-btn.action-heart .key-num,
-.key-btn.action-heart .key-sub {
-  color: white;
-}
-
-/* Backspace Heart */
-.key-btn.action-back {
-  background: linear-gradient(145deg, #ff2a6d, #ff85a5);
-  border: none;
-}
-
-.key-btn.action-back .key-num,
-.key-btn.action-back .key-sub {
-  color: white;
-}
+    .key-btn.action-back .key-num,
+    .key-btn.action-back .key-sub {
+      color: white;
+    }
 
     .error-msg {
       color: #d90429;
@@ -457,14 +426,11 @@
         margin-bottom: 12px;
       }
       .photos-wrapper {
-        margin-bottom: 15px;
+        margin-bottom: 25px;
       }
-      .polaroid-card {
-        width: 115px;
-        padding: 6px 6px 20px 6px;
-      }
-      .polaroid-card img {
-        height: 120px;
+      .heart-frame {
+        width: 120px;
+        height: 112px;
       }
       .center-heart {
         width: 34px;
@@ -480,19 +446,19 @@
       .right-section h1 {
         font-size: 38px;
       }
-      .key-btn {
-        height: 48px;
-      }
-      .key-num {
-        font-size: 15px;
-      }
-      .key-sub {
-        font-size: 8.5px;
-      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Hidden SVG ClipPath for Heart-Shaped Photos -->
+  <svg width="0" height="0" style="position: absolute;">
+    <defs>
+      <clipPath id="heartClip" clipPathUnits="objectBoundingBox">
+        <path d="M 0.5,0.966 C 0.42,0.877 0.03,0.588 0.03,0.333 C 0.03,0.077 0.32,-0.022 0.5,0.244 C 0.68,-0.022 0.97,0.077 0.97,0.333 C 0.97,0.588 0.58,0.877 0.5,0.966 Z" />
+      </clipPath>
+    </defs>
+  </svg>
 
   <!-- Floating Background Hearts -->
   <div class="bg-hearts">
@@ -505,31 +471,29 @@
 
   <div class="surprise-card" id="mainCard">
     
-    <!-- Left Section: Side-by-Side Romantic Polaroid Photos -->
+    <!-- Left Section: Side-by-Side Romantic Heart Photos -->
     <div class="left-section">
       <div class="top-badge">✨ Special Birthday Edition ✨</div>
       
       <div class="photos-wrapper">
+        <div class="polaroid-left heart-frame">
+          <img src="img1.jpeg" alt="Memory 1">
+          <svg class="heart-border" viewBox="0 0 100 90">
+            <path d="M50 87 C42 79 3 53 3 30 C3 7 32 -2 50 22 C68 -2 97 7 97 30 C97 53 58 79 50 87Z"/>
+          </svg>
+          <div class="polaroid-caption">You</div>
+        </div>
 
-  <div class="polaroid-card polaroid-left heart-frame">
-    <img src="img1.jpeg" alt="Memory 1">
-    <svg class="heart-border" viewBox="0 0 100 90">
-      <path d="M50 87 C42 79 3 53 3 30 C3 7 32 -2 50 22 C68 -2 97 7 97 30 C97 53 58 79 50 87Z"/>
-    </svg>
-    <div class="polaroid-caption">You</div>
-  </div>
+        <div class="center-heart">💖</div>
 
-  <div class="center-heart">💖</div>
-
-  <div class="polaroid-card polaroid-right heart-frame">
-    <img src="img2.jpeg" alt="Memory 2">
-    <svg class="heart-border" viewBox="0 0 100 90">
-      <path d="M50 87 C42 79 3 53 3 30 C3 7 32 -2 50 22 C68 -2 97 7 97 30 C97 53 58 79 50 87Z"/>
-    </svg>
-    <div class="polaroid-caption">&amp; Me</div>
-  </div>
-
-</div>
+        <div class="polaroid-right heart-frame">
+          <img src="img2.jpeg" alt="Memory 2">
+          <svg class="heart-border" viewBox="0 0 100 90">
+            <path d="M50 87 C42 79 3 53 3 30 C3 7 32 -2 50 22 C68 -2 97 7 97 30 C97 53 58 79 50 87Z"/>
+          </svg>
+          <div class="polaroid-caption">&amp; Me</div>
+        </div>
+      </div>
 
       <div class="romantic-quote">
         <h2>Happy Birthday Ela</h2>
@@ -539,7 +503,7 @@
       <div class="city-silhouette"></div>
     </div>
 
-    <!-- Right Section: Romantic Number Pad with Custom Subtexts -->
+    <!-- Right Section: Romantic Number Pad -->
     <div class="right-section">
       <h1>Secret Portal</h1>
       <p class="sub-prompt">Enter our special 4-digit code, my love</p>
