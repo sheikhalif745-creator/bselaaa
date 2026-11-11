@@ -256,6 +256,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      position: relative;
     }
 
     .right-section h1 {
@@ -306,7 +307,17 @@
       box-shadow: 0 3px 8px rgba(255, 42, 109, 0.35);
     }
 
-    /* Compact Aesthetic Heart-Shaped Keypad */
+    /* Compact Aesthetic Heart-Shaped Keypad Wrapper */
+    .keypad-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 235px;
+      justify-content: center;
+    }
+
     .keypad-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -314,6 +325,12 @@
       width: 100%;
       max-width: 230px;
       margin-bottom: 10px;
+      transition: opacity 0.3s ease;
+    }
+
+    .keypad-grid.hidden {
+      opacity: 0;
+      pointer-events: none;
     }
 
     .key-btn {
@@ -369,6 +386,52 @@
 
     .key-btn.glow-anim {
       animation: aestheticPressGlow 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Full-Pad Peach Cat Overlay for Wrong Password */
+    .cute-cat-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 240, 245, 0.96);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.92);
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 40;
+      border: 1.5px solid #ffb6cd;
+      box-shadow: 0 8px 25px rgba(255, 42, 109, 0.2);
+    }
+
+    .cute-cat-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+
+    .cat-gif-large {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      box-shadow: 0 4px 15px rgba(255, 42, 109, 0.3);
+    }
+
+    .cat-msg {
+      font-family: 'Great Vibes', cursive;
+      font-size: 26px;
+      color: #b52c5b;
+      margin-top: 2px;
     }
 
     /* Soaring Heart & Flying Arrow Animation Elements */
@@ -449,7 +512,7 @@
       color: #d90429;
       font-size: 11.5px;
       font-weight: 500;
-      margin-top: 2px;
+      margin-top: 6px;
       min-height: 16px;
       opacity: 0;
       transition: opacity 0.3s;
@@ -462,7 +525,7 @@
     .hint-box {
       font-size: 11.5px;
       color: var(--text-sub);
-      margin-top: 4px;
+      margin-top: 6px;
       cursor: pointer;
       padding: 4px 12px;
       border-radius: 15px;
@@ -604,56 +667,70 @@
         <div class="dot" id="dot-3">♥</div>
       </div>
 
-      <!-- Compact Heart Keypad Grid -->
-      <div class="keypad-grid">
-        <button class="key-btn" data-key="1" onclick="pressKey('1', this)">
-          <span class="key-num">1</span>
-          <span class="key-sub">First ✨</span>
-        </button>
-        <button class="key-btn" data-key="2" onclick="pressKey('2', this)">
-          <span class="key-num">2</span>
-          <span class="key-sub">Us 💑</span>
-        </button>
-        <button class="key-btn" data-key="3" onclick="pressKey('3', this)">
-          <span class="key-num">3</span>
-          <span class="key-sub">Always ♾️</span>
-        </button>
-        <button class="key-btn" data-key="4" onclick="pressKey('4', this)">
-          <span class="key-num">4</span>
-          <span class="key-sub">Love 💖</span>
-        </button>
-        <button class="key-btn" data-key="5" onclick="pressKey('5', this)">
-          <span class="key-num">5</span>
-          <span class="key-sub">Soul 💫</span>
-        </button>
-        <button class="key-btn" data-key="6" onclick="pressKey('6', this)">
-          <span class="key-num">6</span>
-          <span class="key-sub">Dream 🌙</span>
-        </button>
-        <button class="key-btn" data-key="7" onclick="pressKey('7', this)">
-          <span class="key-num">7</span>
-          <span class="key-sub">Lucky 🍀</span>
-        </button>
-        <button class="key-btn" data-key="8" onclick="pressKey('8', this)">
-          <span class="key-num">8</span>
-          <span class="key-sub">Hugs 🤗</span>
-        </button>
-        <button class="key-btn" data-key="9" onclick="pressKey('9', this)">
-          <span class="key-num">9</span>
-          <span class="key-sub">Smile 😊</span>
-        </button>
-        <button class="key-btn action-heart" data-key="heart" onclick="pressKey('heart', this)">
-          <span class="key-num">💖</span>
-          <span class="key-sub">Love</span>
-        </button>
-        <button class="key-btn" data-key="0" onclick="pressKey('0', this)">
-          <span class="key-num">0</span>
-          <span class="key-sub">All 💕</span>
-        </button>
-        <button class="key-btn action-back" data-key="back" onclick="pressKey('back', this)">
-          <span class="key-num">⌫</span>
-          <span class="key-sub">Clear</span>
-        </button>
+      <!-- Keypad Container that switches to Full-Pad Peach Cat Overlay -->
+      <div class="keypad-container">
+        
+        <div class="keypad-grid" id="keypadGrid">
+          <button class="key-btn" data-key="1" onclick="pressKey('1', this)">
+            <span class="key-num">1</span>
+            <span class="key-sub">First ✨</span>
+          </button>
+          <button class="key-btn" data-key="2" onclick="pressKey('2', this)">
+            <span class="key-num">2</span>
+            <span class="key-sub">Us 💑</span>
+          </button>
+          <button class="key-btn" data-key="3" onclick="pressKey('3', this)">
+            <span class="key-num">3</span>
+            <span class="key-sub">Always ♾️</span>
+          </button>
+          <button class="key-btn" data-key="4" onclick="pressKey('4', this)">
+            <span class="key-num">4</span>
+            <span class="key-sub">Love 💖</span>
+          </button>
+          <button class="key-btn" data-key="5" onclick="pressKey('5', this)">
+            <span class="key-num">5</span>
+            <span class="key-sub">Soul 💫</span>
+          </button>
+          <button class="key-btn" data-key="6" onclick="pressKey('6', this)">
+            <span class="key-num">6</span>
+            <span class="key-sub">Dream 🌙</span>
+          </button>
+          <button class="key-btn" data-key="7" onclick="pressKey('7', this)">
+            <span class="key-num">7</span>
+            <span class="key-sub">Lucky 🍀</span>
+          </button>
+          <button class="key-btn" data-key="8" onclick="pressKey('8', this)">
+            <span class="key-num">8</span>
+            <span class="key-sub">Hugs 🤗</span>
+          </button>
+          <button class="key-btn" data-key="9" onclick="pressKey('9', this)">
+            <span class="key-num">9</span>
+            <span class="key-sub">Smile 😊</span>
+          </button>
+          <button class="key-btn action-heart" data-key="heart" onclick="pressKey('heart', this)">
+            <span class="key-num">💖</span>
+            <span class="key-sub">Love</span>
+          </button>
+          <button class="key-btn" data-key="0" onclick="pressKey('0', this)">
+            <span class="key-num">0</span>
+            <span class="key-sub">All 💕</span>
+          </button>
+          <button class="key-btn action-back" data-key="back" onclick="pressKey('back', this)">
+            <span class="key-num">⌫</span>
+            <span class="key-sub">Clear</span>
+          </button>
+        </div>
+
+        <!-- Full-Pad Peach Cat Overlay -->
+        <div class="cute-cat-overlay" id="cuteCatOverlay">
+          <div class="cat-gif-large">
+            <div class="tenor-gif-embed" data-postid="22725233" data-share-method="host" data-aspect-ratio="1" data-width="100%">
+              <a href="https://tenor.com/view/peach-cat-kiss-sad-and-gif-22725233">Peach Cat Sticker</a>
+            </div>
+          </div>
+          <div class="cat-msg">No no, wrong code! 🥺</div>
+        </div>
+
       </div>
 
       <div id="errorMsg" class="error-msg">Wrong code! Try again my love 💕</div>
@@ -661,6 +738,9 @@
     </div>
 
   </div>
+
+  <!-- Tenor Embed Script -->
+  <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 
   <script>
     let enteredPass = "";
@@ -691,12 +771,12 @@
         heart.style.transform = "translate(-50%, -50%) scale(1.3)";
       });
 
-      // 2. Launch Arrow ONLY (no bow) from side when heart reaches mid-air
+      // 2. Launch Arrow ONLY from side when heart reaches mid-air
       setTimeout(() => {
         const fromLeft = Math.random() > 0.5;
         const arrow = document.createElement("span");
         arrow.className = "flying-arrow";
-        arrow.textContent = "➵"; // Sleek arrow symbol
+        arrow.textContent = "➵";
 
         const arrowStartX = fromLeft ? midX - 220 : midX + 220;
         const arrowStartY = midY + 30;
@@ -704,7 +784,6 @@
         arrow.style.left = arrowStartX + "px";
         arrow.style.top = arrowStartY + "px";
         
-        // Point arrow direction toward center
         if (fromLeft) {
           arrow.style.transform = "translate(-50%, -50%) rotate(25deg)";
         } else {
@@ -713,13 +792,12 @@
 
         document.body.appendChild(arrow);
 
-        // Arrow flies directly into the heart
         requestAnimationFrame(() => {
           arrow.style.left = midX + "px";
           arrow.style.top = midY + "px";
         });
 
-        // 3. Impact & Shatter (Heart breaks into broken pieces & sparkles)
+        // 3. Impact & Shatter
         setTimeout(() => {
           heart.remove();
           arrow.style.opacity = "0";
@@ -762,6 +840,9 @@
 
       const errorMsg = document.getElementById('errorMsg');
       const passDots = document.getElementById('passDots');
+      const keypadGrid = document.getElementById('keypadGrid');
+      const cuteCatOverlay = document.getElementById('cuteCatOverlay');
+      
       errorMsg.classList.remove('show');
 
       if (val === 'back') {
@@ -787,6 +868,18 @@
             errorMsg.classList.add('show');
             passDots.classList.add('shake');
             setTimeout(() => passDots.classList.remove('shake'), 400);
+
+            // Hide keypad grid and show Full-Pad Peach Cat Overlay
+            keypadGrid.classList.add('hidden');
+            cuteCatOverlay.classList.add('show');
+
+            // After 3.5 seconds, hide cat overlay and restore keypad grid for retry
+            setTimeout(() => {
+              cuteCatOverlay.classList.remove('show');
+              keypadGrid.classList.remove('hidden');
+              errorMsg.classList.remove('show');
+            }, 3500);
+
             enteredPass = "";
             updateDots();
           }, 250);
