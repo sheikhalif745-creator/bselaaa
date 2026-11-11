@@ -74,9 +74,9 @@
       box-shadow: 0 25px 50px rgba(173, 20, 87, 0.18);
       display: flex;
       flex-direction: row;
-      max-width: 920px;
+      max-width: 940px;
       width: 100%;
-      min-height: 550px;
+      min-height: 560px;
       overflow: hidden;
       position: relative;
       z-index: 1;
@@ -107,62 +107,96 @@
       margin-bottom: 25px;
     }
 
-    /* Romantic Side-by-Side Polaroid Cluster */
-    .photos-wrapper {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 30px;
-    }
+    /* Romantic Heart Photo Frames */
 
-    .polaroid-card {
-      width: 145px;
-      background: #ffffff;
-      padding: 8px 8px 26px 8px;
-      border-radius: 16px;
-      box-shadow: 0 12px 28px rgba(173, 20, 87, 0.18);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-    }
+.photos-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 30px;
+}
 
-    .polaroid-left {
-      transform: rotate(-6deg) translateY(-5px);
-      z-index: 1;
-    }
+.heart-frame {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 8px 10px rgba(255, 42, 109, 0.25));
+  transition: transform 0.4s ease;
+}
 
-    .polaroid-right {
-      transform: rotate(6deg) translateY(8px);
-      z-index: 2;
-    }
+.heart-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 
-    .polaroid-card:hover {
-      transform: scale(1.08) rotate(0deg) translateY(0);
-      z-index: 10;
-      box-shadow: 0 18px 35px rgba(255, 42, 109, 0.28);
-    }
+  clip-path: url(#heartClip);
+}
 
-    .polaroid-card img {
-      width: 100%;
-      height: 165px;
-      object-fit: cover;
-      border-radius: 10px;
-      display: block;
-    }
+/* Heart Border */
+.heart-border {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
 
-    .polaroid-caption {
-      position: absolute;
-      bottom: 5px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      font-family: 'Great Vibes', cursive;
-      font-size: 17px;
-      color: var(--text-main);
-    }
+.heart-border path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 3px #ff75a0);
+}
 
-    /* Center Connecting Heart */
+/* Inner Pink Border */
+.heart-border path {
+  paint-order: stroke;
+}
+
+.heart-frame::after {
+  content: " ";
+  position: absolute;
+  inset: 3px;
+  pointer-events: none;
+  clip-path: url(#heartClip);
+  border-radius: 50%;
+  box-shadow: inset 0 0 12px rgba(255, 42, 109, 0.25);
+}
+
+.polaroid-left {
+  transform: rotate(-8deg) translateY(-5px);
+  z-index: 1;
+}
+
+.polaroid-right {
+  transform: rotate(8deg) translateY(8px);
+  z-index: 2;
+}
+
+.heart-frame:hover {
+  transform: rotate(0deg) scale(1.1) translateY(-5px);
+  z-index: 10;
+}
+
+.polaroid-caption {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 17px;
+  color: #b52c5b;
+}
+
     .center-heart {
       position: absolute;
       z-index: 5;
@@ -206,7 +240,6 @@
       font-style: italic;
     }
 
-    /* City Skyline Silhouette at Bottom */
     .city-silhouette {
       position: absolute;
       bottom: 0;
@@ -225,7 +258,7 @@
 
     /* Right Section: Romantic Number Pad */
     .right-section {
-      flex: 0.9;
+      flex: 1;
       padding: 35px 25px;
       display: flex;
       flex-direction: column;
@@ -236,40 +269,40 @@
 
     .right-section h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 48px;
+      font-size: 46px;
       color: var(--text-main);
       line-height: 1;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .right-section .sub-prompt {
-      font-size: 12.5px;
+      font-size: 12px;
       color: var(--text-sub);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
-    /* Glowing Heart Passcode Dots */
+    /* Heart Passcode Dots */
     .pass-dots {
       display: flex;
       gap: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       background: rgba(255, 240, 245, 0.9);
-      padding: 10px 22px;
+      padding: 8px 20px;
       border-radius: 30px;
       border: 1.5px solid #ffb3c6;
       box-shadow: inset 0 2px 6px rgba(255, 42, 109, 0.08);
     }
 
     .dot {
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       border: 2px solid var(--accent-soft);
       background: #ffffff;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 12px;
+      font-size: 11px;
       color: transparent;
       transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
@@ -282,57 +315,91 @@
       box-shadow: 0 4px 10px rgba(255, 42, 109, 0.35);
     }
 
-    /* Romantic Circular / Pill Keypad */
+    /* Romantic Keypad Grid */
     .keypad-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 10px;
       width: 100%;
-      max-width: 230px;
-      margin-bottom: 12px;
+      max-width: 260px;
+      margin-bottom: 10px;
     }
 
-    .key-btn {
-      height: 52px;
-      background: rgba(255, 255, 255, 0.95);
-      border: 1.5px solid #ffd1dc;
-      border-radius: 18px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text-main);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 10px rgba(255, 117, 143, 0.1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      user-select: none;
-    }
+    /* Romantic Heart-Inspired Keypad Buttons */
+/* Aesthetic Romantic Heart Keypad */
+.key-btn {
+  height: 75px;
+  width: 75px;
+  justify-self: center;
+  align-self: center;
 
-    .key-btn:hover {
-      background: #fff0f3;
-      border-color: var(--accent-pink);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(255, 42, 109, 0.2);
-    }
+  background: linear-gradient(
+    145deg,
+    #fffafd 0%,
+    #ffdce8 55%,
+    #ffb6cd 100%
+  );
 
-    .key-btn:active {
-      transform: scale(0.94);
-    }
+  border: none;
+  border-radius: 0;
+  clip-path: path("M 37.5 70 C 30 62, 3 44, 3 24 C 3 5, 27 0, 37.5 17 C 48 0, 72 5, 72 24 C 72 44, 45 62, 37.5 70 Z");
 
-    .key-btn.action-heart {
-      background: linear-gradient(135deg, #fff0f3, #ffe0e9);
-      color: var(--accent-pink);
-      font-size: 18px;
-    }
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
 
-    .key-btn.action-back {
-      background: linear-gradient(135deg, #ff2a6d, #ff758f);
-      color: #ffffff;
-      border: none;
-      font-size: 16px;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  transition: transform 0.3s ease, filter 0.3s ease;
+
+  filter: drop-shadow(0 5px 5px rgba(255, 42, 109, 0.22));
+}
+
+.key-btn:hover {
+  transform: scale(1.12) translateY(-3px);
+  filter: drop-shadow(0 8px 9px rgba(255, 42, 109, 0.35));
+}
+
+.key-btn:active {
+  transform: scale(0.92);
+}
+
+.key-num {
+  font-size: 16px;
+  font-weight: 600;
+  color: #9e3158;
+  line-height: 1.2;
+}
+
+.key-sub {
+  font-size: 9px;
+  color: #e7477c;
+  font-weight: 500;
+}
+
+/* Special Heart Button */
+.key-btn.action-heart {
+  background: linear-gradient(145deg, #ffb3ca, #ff2a6d);
+}
+
+.key-btn.action-heart .key-num,
+.key-btn.action-heart .key-sub {
+  color: white;
+}
+
+/* Backspace Heart */
+.key-btn.action-back {
+  background: linear-gradient(145deg, #ff2a6d, #ff85a5);
+  border: none;
+}
+
+.key-btn.action-back .key-num,
+.key-btn.action-back .key-sub {
+  color: white;
+}
 
     .error-msg {
       color: #d90429;
@@ -351,7 +418,7 @@
     .hint-box {
       font-size: 12px;
       color: var(--text-sub);
-      margin-top: 6px;
+      margin-top: 4px;
       cursor: pointer;
       padding: 4px 12px;
       border-radius: 15px;
@@ -363,7 +430,7 @@
       color: var(--accent-pink);
     }
 
-    /* Shake Animation on Wrong Password */
+    /* Shake Animation */
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
       20%, 60% { transform: translateX(-8px); }
@@ -382,40 +449,45 @@
         min-height: auto;
       }
       .left-section {
-        padding: 25px 15px 20px;
+        padding: 22px 15px 18px;
         border-right: none;
         border-bottom: 1.5px solid rgba(255, 255, 255, 0.7);
       }
       .top-badge {
-        margin-bottom: 15px;
+        margin-bottom: 12px;
       }
       .photos-wrapper {
-        margin-bottom: 18px;
+        margin-bottom: 15px;
       }
       .polaroid-card {
-        width: 118px;
-        padding: 6px 6px 22px 6px;
+        width: 115px;
+        padding: 6px 6px 20px 6px;
       }
       .polaroid-card img {
-        height: 130px;
+        height: 120px;
       }
       .center-heart {
-        width: 36px;
-        height: 36px;
-        font-size: 15px;
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
       }
       .romantic-quote h2 {
-        font-size: 30px;
+        font-size: 28px;
       }
       .right-section {
-        padding: 22px 15px;
+        padding: 20px 15px;
       }
       .right-section h1 {
-        font-size: 40px;
+        font-size: 38px;
       }
       .key-btn {
-        height: 46px;
-        font-size: 16px;
+        height: 48px;
+      }
+      .key-num {
+        font-size: 15px;
+      }
+      .key-sub {
+        font-size: 8.5px;
       }
     }
   </style>
@@ -438,21 +510,26 @@
       <div class="top-badge">✨ Special Birthday Edition ✨</div>
       
       <div class="photos-wrapper">
-        <!-- 1st Photo -->
-        <div class="polaroid-card polaroid-left">
-          <img src="img1.jpeg" alt="Memory 1">
-          <div class="polaroid-caption">You</div>
-        </div>
 
-        <!-- Connecting Heart Badge -->
-        <div class="center-heart">💖</div>
+  <div class="polaroid-card polaroid-left heart-frame">
+    <img src="img1.jpeg" alt="Memory 1">
+    <svg class="heart-border" viewBox="0 0 100 90">
+      <path d="M50 87 C42 79 3 53 3 30 C3 7 32 -2 50 22 C68 -2 97 7 97 30 C97 53 58 79 50 87Z"/>
+    </svg>
+    <div class="polaroid-caption">You</div>
+  </div>
 
-        <!-- 2nd Photo -->
-        <div class="polaroid-card polaroid-right">
-          <img src="img2.jpeg" alt="Memory 2">
-          <div class="polaroid-caption">&amp; Me</div>
-        </div>
-      </div>
+  <div class="center-heart">💖</div>
+
+  <div class="polaroid-card polaroid-right heart-frame">
+    <img src="img2.jpeg" alt="Memory 2">
+    <svg class="heart-border" viewBox="0 0 100 90">
+      <path d="M50 87 C42 79 3 53 3 30 C3 7 32 -2 50 22 C68 -2 97 7 97 30 C97 53 58 79 50 87Z"/>
+    </svg>
+    <div class="polaroid-caption">&amp; Me</div>
+  </div>
+
+</div>
 
       <div class="romantic-quote">
         <h2>Happy Birthday Ela</h2>
@@ -462,12 +539,11 @@
       <div class="city-silhouette"></div>
     </div>
 
-    <!-- Right Section: Romantic Number Pad -->
+    <!-- Right Section: Romantic Number Pad with Custom Subtexts -->
     <div class="right-section">
       <h1>Secret Portal</h1>
-      <p class="sub-prompt">Enter our special 4-digit birthday code</p>
+      <p class="sub-prompt">Enter our special 4-digit code, my love</p>
 
-      <!-- Heart Passcode Indicators -->
       <div class="pass-dots" id="passDots">
         <div class="dot" id="dot-0">♥</div>
         <div class="dot" id="dot-1">♥</div>
@@ -475,20 +551,56 @@
         <div class="dot" id="dot-3">♥</div>
       </div>
 
-      <!-- Keypad Grid -->
+      <!-- Romantic Keypad Grid -->
       <div class="keypad-grid">
-        <button class="key-btn" onclick="pressKey('1')">1</button>
-        <button class="key-btn" onclick="pressKey('2')">2</button>
-        <button class="key-btn" onclick="pressKey('3')">3</button>
-        <button class="key-btn" onclick="pressKey('4')">4</button>
-        <button class="key-btn" onclick="pressKey('5')">5</button>
-        <button class="key-btn" onclick="pressKey('6')">6</button>
-        <button class="key-btn" onclick="pressKey('7')">7</button>
-        <button class="key-btn" onclick="pressKey('8')">8</button>
-        <button class="key-btn" onclick="pressKey('9')">9</button>
-        <button class="key-btn action-heart" onclick="pressKey('heart')">💖</button>
-        <button class="key-btn" onclick="pressKey('0')">0</button>
-        <button class="key-btn action-back" onclick="pressKey('back')">⌫</button>
+        <button class="key-btn" onclick="pressKey('1')">
+          <span class="key-num">1</span>
+          <span class="key-sub">First ✨</span>
+        </button>
+        <button class="key-btn" onclick="pressKey('2')">
+          <span class="key-num">2</span>
+          <span class="key-sub">Us 👩‍❤️‍👨</span>
+        </button>
+        <button class="key-btn" onclick="pressKey('3')">
+          <span class="key-num">3</span>
+          <span class="key-sub">Forever ♾️</span>
+        </button>
+        <button class="key-btn" onclick="pressKey('4')">
+          <span class="key-num">4</span>
+          <span class="key-sub">Love 💖</span>
+        </button>
+        <button class="key-btn" onclick="pressKey('5')">
+          <span class="key-num">5</span>
+          <span class="key-sub">Soul 💫</span>
+        </button>
+        <button class="key-btn" onclick="pressKey('6')">
+          <span class="key-num">6</span>
+          <span class="key-sub">Dreams 🌙</span>
+        </button>
+        <button class="key-btn" onclick="pressKey('7')">
+          <span class="key-num">7</span>
+          <span class="key-sub">Lucky 🍀</span>
+        </button>
+        <button class="key-btn" onclick="pressKey('8')">
+          <span class="key-num">8</span>
+          <span class="key-sub">Hugs 🤗</span>
+        </button>
+        <button class="key-btn" onclick="pressKey('9')">
+          <span class="key-num">9</span>
+          <span class="key-sub">Smiles 😊</span>
+        </button>
+        <button class="key-btn action-heart" onclick="pressKey('heart')">
+          <span class="key-num">💖</span>
+          <span class="key-sub">Heart</span>
+        </button>
+        <button class="key-btn" onclick="pressKey('0')">
+          <span class="key-num">0</span>
+          <span class="key-sub">All 💕</span>
+        </button>
+        <button class="key-btn action-back" onclick="pressKey('back')">
+          <span class="key-num">⌫</span>
+          <span class="key-sub">Clear</span>
+        </button>
       </div>
 
       <div id="errorMsg" class="error-msg">Wrong code! Try again my love 💕</div>
@@ -499,7 +611,7 @@
 
   <script>
     let enteredPass = "";
-    const correctPass = "1234"; // আপনার পছন্দের ৪ সংখ্যার পাসওয়ার্ড এখানে সেট করুন
+    const correctPass = "1234";
 
     function pressKey(val) {
       const errorMsg = document.getElementById('errorMsg');
@@ -509,7 +621,6 @@
       if (val === 'back') {
         enteredPass = enteredPass.slice(0, -1);
       } else if (val === 'heart') {
-        // Love pulse effect on dots
         passDots.style.transform = 'scale(1.06)';
         setTimeout(() => passDots.style.transform = 'scale(1)', 200);
       } else {
@@ -523,7 +634,7 @@
       if (enteredPass.length === 4) {
         if (enteredPass === correctPass) {
           setTimeout(() => {
-            window.location.href = 'heart.html'; // সঠিক পাসওয়ার্ড দিলে পরের পেজে চলে যাবে
+            window.location.href = 'heart.html';
           }, 350);
         } else {
           setTimeout(() => {
@@ -548,7 +659,6 @@
       }
     }
 
-    // Physical Keyboard Support (Laptop/PC users can also type numbers)
     document.addEventListener('keydown', function(e) {
       if (e.key >= '0' && e.key <= '9') {
         pressKey(e.key);
