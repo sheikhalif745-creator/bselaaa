@@ -33,7 +33,7 @@
       padding: 15px;
     }
 
-    /* Floating Background Hearts */
+    /* Floating Balloons, Hearts & Birthday Vibe OVER everything (z-index: 25) */
     .bg-hearts {
       position: fixed;
       top: 0;
@@ -42,35 +42,54 @@
       height: 100%;
       pointer-events: none;
       overflow: hidden;
-      z-index: 0;
+      z-index: 25;
     }
 
     .bg-hearts span {
       position: absolute;
-      bottom: -50px;
-      font-size: 20px;
-      opacity: 0.4;
-      animation: floatUp 8s linear infinite;
+      bottom: -60px;
+      font-size: 22px;
+      opacity: 0.75;
+      animation: floatUp linear infinite;
+      filter: drop-shadow(0 4px 6px rgba(255, 42, 109, 0.2));
     }
 
-    .bg-hearts span:nth-child(1) { left: 10%; animation-duration: 7s; font-size: 18px; }
-    .bg-hearts span:nth-child(2) { left: 25%; animation-duration: 10s; animation-delay: 2s; font-size: 26px; }
-    .bg-hearts span:nth-child(3) { left: 50%; animation-duration: 8s; animation-delay: 1s; font-size: 20px; }
-    .bg-hearts span:nth-child(4) { left: 75%; animation-duration: 11s; animation-delay: 3s; font-size: 24px; }
-    .bg-hearts span:nth-child(5) { left: 90%; animation-duration: 6s; animation-delay: 4s; font-size: 16px; }
+    .bg-hearts span:nth-child(1)  { left: 4%;  animation-duration: 6.5s; animation-delay: 0s;   font-size: 26px; }
+    .bg-hearts span:nth-child(2)  { left: 14%; animation-duration: 8.5s; animation-delay: 1.5s; font-size: 24px; }
+    .bg-hearts span:nth-child(3)  { left: 22%; animation-duration: 7s;   animation-delay: 0.5s; font-size: 28px; }
+    .bg-hearts span:nth-child(4)  { left: 32%; animation-duration: 9s;   animation-delay: 2.5s; font-size: 22px; }
+    .bg-hearts span:nth-child(5)  { left: 42%; animation-duration: 6s;   animation-delay: 1s;   font-size: 25px; }
+    .bg-hearts span:nth-child(6)  { left: 53%; animation-duration: 7.5s; animation-delay: 3s;   font-size: 30px; }
+    .bg-hearts span:nth-child(7)  { left: 64%; animation-duration: 8s;   animation-delay: 0.8s; font-size: 22px; }
+    .bg-hearts span:nth-child(8)  { left: 74%; animation-duration: 6.8s; animation-delay: 2s;   font-size: 26px; }
+    .bg-hearts span:nth-child(9)  { left: 84%; animation-duration: 9.5s; animation-delay: 3.5s; font-size: 24px; }
+    .bg-hearts span:nth-child(10) { left: 93%; animation-duration: 7.2s; animation-delay: 1.2s; font-size: 28px; }
 
     @keyframes floatUp {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
-      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+      0% { 
+        transform: translateY(0) translateX(0) rotate(0deg); 
+        opacity: 0; 
+      }
+      15% {
+        opacity: 0.8;
+      }
+      50% { 
+        transform: translateY(-55vh) translateX(18px) rotate(15deg); 
+        opacity: 0.75;
+      }
+      100% { 
+        transform: translateY(-115vh) translateX(-18px) rotate(360deg); 
+        opacity: 0; 
+      }
     }
 
     /* Main Split Container */
     .surprise-card {
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.82);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-radius: 32px;
-      border: 2px solid rgba(255, 255, 255, 0.9);
+      border: 2px solid rgba(255, 255, 255, 0.95);
       box-shadow: 0 25px 50px rgba(173, 20, 87, 0.18);
       display: flex;
       flex-direction: row;
@@ -96,14 +115,15 @@
     }
 
     .top-badge {
-      background: rgba(255, 255, 255, 0.85);
+      background: linear-gradient(135deg, #fff0f5, #ffffff);
       color: var(--accent-pink);
-      padding: 5px 16px;
+      padding: 6px 18px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.5px;
-      box-shadow: 0 4px 12px rgba(255, 42, 109, 0.12);
+      border: 1px solid #ffd1dc;
+      box-shadow: 0 4px 12px rgba(255, 42, 109, 0.14);
       margin-bottom: 25px;
     }
 
@@ -179,7 +199,7 @@
       color: #b52c5b;
     }
 
-    /* Fixed: Higher z-index (20) & pointer-events: none so it never goes under photos */
+    /* Center Connecting Heart */
     .center-heart {
       position: absolute;
       z-index: 20;
@@ -207,15 +227,16 @@
     .romantic-quote {
       text-align: center;
       z-index: 3;
-      max-width: 300px;
+      max-width: 310px;
     }
 
     .romantic-quote h2 {
       font-family: 'Great Vibes', cursive;
-      font-size: 36px;
+      font-size: 38px;
       color: var(--accent-pink);
       line-height: 1.1;
       margin-bottom: 4px;
+      text-shadow: 0 2px 8px rgba(255, 42, 109, 0.15);
     }
 
     .romantic-quote p {
@@ -460,20 +481,25 @@
     </defs>
   </svg>
 
-  <!-- Floating Background Hearts -->
+  <!-- Floating Balloons, Hearts & Birthday Vibe Over Photos & Screen -->
   <div class="bg-hearts">
+    <span>🎈</span>
     <span>💖</span>
-    <span>🌸</span>
+    <span>🎂</span>
+    <span>🎈</span>
     <span>💕</span>
-    <span>✨</span>
+    <span>🎉</span>
+    <span>🎈</span>
     <span>💗</span>
+    <span>✨</span>
+    <span>🎈</span>
   </div>
 
   <div class="surprise-card" id="mainCard">
     
     <!-- Left Section: Side-by-Side Romantic Heart Photos -->
     <div class="left-section">
-      <div class="top-badge">✨ Special Birthday Edition ✨</div>
+      <div class="top-badge">🎂 Happy Birthday Celebration 🎉</div>
       
       <div class="photos-wrapper">
         <div class="polaroid-left heart-frame">
@@ -496,8 +522,8 @@
       </div>
 
       <div class="romantic-quote">
-        <h2>Happy Birthday Ela</h2>
-        <p>"Every moment with you feels like magic"</p>
+        <h2>Happy Birthday Ela 🎈</h2>
+        <p>"Wishing the sweetest birthday to my favorite person ✨"</p>
       </div>
 
       <div class="city-silhouette"></div>
@@ -505,8 +531,8 @@
 
     <!-- Right Section: Romantic Number Pad -->
     <div class="right-section">
-      <h1>Secret Portal</h1>
-      <p class="sub-prompt">Enter our special 4-digit code, my love</p>
+      <h1>Birthday Surprise</h1>
+      <p class="sub-prompt">Enter our special 4-digit birthday code, my love 🎁</p>
 
       <div class="pass-dots" id="passDots">
         <div class="dot" id="dot-0">♥</div>
@@ -568,7 +594,7 @@
       </div>
 
       <div id="errorMsg" class="error-msg">Wrong code! Try again my love 💕</div>
-      <div class="hint-box" onclick="alert('Hint: Our secret code is 1234 💖')">💡 Need a hint?</div>
+      <div class="hint-box" onclick="alert('Hint: Our secret birthday code is 1234 🎂')">💡 Need a hint?</div>
     </div>
 
   </div>
