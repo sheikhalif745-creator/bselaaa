@@ -74,7 +74,7 @@
 
     /* Main Split Container */
     .surprise-card {
-      background: rgba(255, 255, 255, 0.82);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-radius: 32px;
@@ -90,10 +90,10 @@
       z-index: 1;
     }
 
-    /* Left Section: Side-by-Side Romantic Photos */
+    /* Left Section: Overlapping Rounded-Star Sticker Photos */
     .left-section {
       flex: 1.1;
-      background: linear-gradient(160deg, rgba(255, 240, 245, 0.85) 0%, rgba(255, 182, 193, 0.45) 100%);
+      background: linear-gradient(160deg, rgba(255, 240, 245, 0.88) 0%, rgba(255, 182, 193, 0.45) 100%);
       position: relative;
       display: flex;
       flex-direction: column;
@@ -113,36 +113,53 @@
       letter-spacing: 0.5px;
       border: 1px solid #ffd1dc;
       box-shadow: 0 4px 12px rgba(255, 42, 109, 0.14);
-      margin-bottom: 25px;
+      margin-bottom: 18px;
+      z-index: 5;
     }
 
-    .photos-wrapper {
+    .star-collage {
       position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-      margin-bottom: 35px;
+      width: 270px;
+      height: 235px;
+      margin-bottom: 14px;
+      z-index: 4;
     }
 
-    .heart-frame {
-      width: 145px;
-      height: 135px;
-      position: relative;
-      background: transparent;
-      padding: 0;
-      filter: drop-shadow(0 8px 10px rgba(255, 42, 109, 0.25));
-      transition: transform 0.4s ease;
+    .star-sticker {
+      position: absolute;
+      width: 155px;
+      height: 155px;
+      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .heart-frame img {
+    .star-sticker.top-star {
+      top: 0;
+      left: 16px;
+      transform: rotate(-10deg);
+      z-index: 3;
+    }
+
+    .star-sticker.bottom-star {
+      bottom: 0;
+      right: 14px;
+      transform: rotate(12deg);
+      z-index: 2;
+    }
+
+    .star-sticker:hover {
+      transform: scale(1.08) rotate(0deg);
+      z-index: 10;
+    }
+
+    .star-sticker img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      clip-path: url(#heartClip);
+      clip-path: url(#roundedStarClip);
+      display: block;
     }
 
-    .heart-border {
+    .star-border-svg {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -151,63 +168,23 @@
       pointer-events: none;
     }
 
-    .heart-border path {
+    /* Outer soft pink sticker outline */
+    .star-border-svg .outer-pink {
       fill: none;
-      stroke: #fff;
-      stroke-width: 3.5;
+      stroke: #f7c6d7;
+      stroke-width: 9.5;
       stroke-linejoin: round;
-      paint-order: stroke;
-      filter: drop-shadow(0 0 3px #ff75a0);
+      stroke-linecap: round;
+      filter: drop-shadow(0 6px 10px rgba(181, 44, 91, 0.18));
     }
 
-    .polaroid-left {
-      transform: rotate(-8deg) translateY(-5px);
-      z-index: 1;
-    }
-
-    .polaroid-right {
-      transform: rotate(8deg) translateY(8px);
-      z-index: 2;
-    }
-
-    .heart-frame:hover {
-      transform: rotate(0deg) scale(1.1) translateY(-5px);
-      z-index: 10;
-    }
-
-    .polaroid-caption {
-      position: absolute;
-      bottom: -24px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      font-family: 'Great Vibes', cursive;
-      font-size: 19px;
-      color: #b52c5b;
-    }
-
-    .center-heart {
-      position: absolute;
-      z-index: 20;
-      pointer-events: none;
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #ff2a6d, #ff758f);
-      border-radius: 50%;
-      border: 3px solid #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 16px;
-      box-shadow: 0 6px 15px rgba(255, 42, 109, 0.4);
-      animation: heartbeat 1.5s infinite;
-    }
-
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      25% { transform: scale(1.15); }
-      50% { transform: scale(1); }
-      75% { transform: scale(1.12); }
+    /* Inner crisp white sticker outline */
+    .star-border-svg .inner-white {
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 5.5;
+      stroke-linejoin: round;
+      stroke-linecap: round;
     }
 
     .romantic-quote {
@@ -218,7 +195,7 @@
 
     .romantic-quote h2 {
       font-family: 'Great Vibes', cursive;
-      font-size: 38px;
+      font-size: 36px;
       color: var(--accent-pink);
       line-height: 1.1;
       margin-bottom: 4px;
@@ -562,17 +539,14 @@
       .top-badge {
         margin-bottom: 12px;
       }
-      .photos-wrapper {
-        margin-bottom: 25px;
+      .star-collage {
+        width: 235px;
+        height: 205px;
+        margin-bottom: 10px;
       }
-      .heart-frame {
-        width: 115px;
-        height: 108px;
-      }
-      .center-heart {
-        width: 34px;
-        height: 34px;
-        font-size: 14px;
+      .star-sticker {
+        width: 132px;
+        height: 132px;
       }
       .romantic-quote h2 {
         font-size: 28px;
@@ -598,11 +572,11 @@
 </head>
 <body>
 
-  <!-- Hidden SVG ClipPath for Heart-Shaped Photos -->
+  <!-- Rounded 5-Point Star ClipPath + Sticker Outline Path -->
   <svg width="0" height="0" style="position: absolute;">
     <defs>
-      <clipPath id="heartClip" clipPathUnits="objectBoundingBox">
-        <path d="M 0.5,0.966 C 0.42,0.877 0.03,0.588 0.03,0.333 C 0.03,0.077 0.32,-0.022 0.5,0.244 C 0.68,-0.022 0.97,0.077 0.97,0.333 C 0.97,0.588 0.58,0.877 0.5,0.966 Z" />
+      <clipPath id="roundedStarClip" clipPathUnits="objectBoundingBox">
+        <path d="M 0.50 0.05 C 0.54 0.05 0.57 0.07 0.59 0.11 L 0.69 0.31 L 0.91 0.34 C 0.95 0.35 0.98 0.38 0.99 0.42 C 1.00 0.46 0.98 0.50 0.95 0.53 L 0.79 0.69 L 0.83 0.91 C 0.84 0.95 0.82 0.99 0.78 1.00 C 0.74 1.01 0.70 1.00 0.67 0.98 L 0.50 0.87 L 0.33 0.98 C 0.30 1.00 0.26 1.01 0.22 1.00 C 0.18 0.99 0.16 0.95 0.17 0.91 L 0.21 0.69 L 0.05 0.53 C 0.02 0.50 0.00 0.46 0.01 0.42 C 0.02 0.38 0.05 0.35 0.09 0.34 L 0.31 0.31 L 0.41 0.11 C 0.43 0.07 0.46 0.05 0.50 0.05 Z" />
       </clipPath>
     </defs>
   </svg>
@@ -623,27 +597,27 @@
 
   <div class="surprise-card" id="mainCard">
     
-    <!-- Left Section: Side-by-Side Romantic Heart Photos -->
+    <!-- Left Section: Overlapping Rounded-Star Sticker Photos -->
     <div class="left-section">
       <div class="top-badge">🎂 Happy Birthday Celebration 🎉</div>
       
-      <div class="photos-wrapper">
-        <div class="polaroid-left heart-frame">
+      <div class="star-collage">
+        <!-- Photo 1 (Top Overlapping Star) -->
+        <div class="star-sticker top-star">
           <img src="img1.jpeg" alt="Memory 1">
-          <svg class="heart-border" viewBox="0 0 100 90">
-            <path d="M50 87 C42 79 3 53 3 30 C3 7 32 -2 50 22 C68 -2 97 7 97 30 C97 53 58 79 50 87Z"/>
+          <svg class="star-border-svg" viewBox="0 0 100 100">
+            <path class="outer-pink" d="M 50 5 C 54 5 57 7 59 11 L 69 31 L 91 34 C 95 35 98 38 99 42 C 100 46 98 50 95 53 L 79 69 L 83 91 C 84 95 82 99 78 100 C 74 101 70 100 67 98 L 50 87 L 33 98 C 30 100 26 101 22 100 C 18 99 16 95 17 91 L 21 69 L 5 53 C 2 50 0 46 1 42 C 2 38 5 35 9 34 L 31 31 L 41 11 C 43 7 46 5 50 5 Z" />
+            <path class="inner-white" d="M 50 5 C 54 5 57 7 59 11 L 69 31 L 91 34 C 95 35 98 38 99 42 C 100 46 98 50 95 53 L 79 69 L 83 91 C 84 95 82 99 78 100 C 74 101 70 100 67 98 L 50 87 L 33 98 C 30 100 26 101 22 100 C 18 99 16 95 17 91 L 21 69 L 5 53 C 2 50 0 46 1 42 C 2 38 5 35 9 34 L 31 31 L 41 11 C 43 7 46 5 50 5 Z" />
           </svg>
-          <div class="polaroid-caption">You</div>
         </div>
 
-        <div class="center-heart">💖</div>
-
-        <div class="polaroid-right heart-frame">
+        <!-- Photo 2 (Bottom Cascading Star) -->
+        <div class="star-sticker bottom-star">
           <img src="img2.jpeg" alt="Memory 2">
-          <svg class="heart-border" viewBox="0 0 100 90">
-            <path d="M50 87 C42 79 3 53 3 30 C3 7 32 -2 50 22 C68 -2 97 7 97 30 C97 53 58 79 50 87Z"/>
+          <svg class="star-border-svg" viewBox="0 0 100 100">
+            <path class="outer-pink" d="M 50 5 C 54 5 57 7 59 11 L 69 31 L 91 34 C 95 35 98 38 99 42 C 100 46 98 50 95 53 L 79 69 L 83 91 C 84 95 82 99 78 100 C 74 101 70 100 67 98 L 50 87 L 33 98 C 30 100 26 101 22 100 C 18 99 16 95 17 91 L 21 69 L 5 53 C 2 50 0 46 1 42 C 2 38 5 35 9 34 L 31 31 L 41 11 C 43 7 46 5 50 5 Z" />
+            <path class="inner-white" d="M 50 5 C 54 5 57 7 59 11 L 69 31 L 91 34 C 95 35 98 38 99 42 C 100 46 98 50 95 53 L 79 69 L 83 91 C 84 95 82 99 78 100 C 74 101 70 100 67 98 L 50 87 L 33 98 C 30 100 26 101 22 100 C 18 99 16 95 17 91 L 21 69 L 5 53 C 2 50 0 46 1 42 C 2 38 5 35 9 34 L 31 31 L 41 11 C 43 7 46 5 50 5 Z" />
           </svg>
-          <div class="polaroid-caption">&amp; Me</div>
         </div>
       </div>
 
